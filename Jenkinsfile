@@ -24,7 +24,7 @@ pipeline {
             steps {
                 sh '''
                 cd Docker
-                sudo docker build -t mywebapp:v1 .
+                docker build -t mywebapp:v1 .
                 '''
             }
         }
@@ -32,9 +32,9 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 sh '''
-                sudo docker stop registerapp || true
-                sudo docker rm registerapp || true
-                sudo docker run -d --name registerapp -p 8086:8080 mywebapp:v1
+                docker stop registerapp || true
+                docker rm registerapp || true
+                docker run -d --name registerapp -p 8086:8080 mywebapp:v1
                 '''
             }
         }
